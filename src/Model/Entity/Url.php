@@ -36,7 +36,7 @@ class Url extends Entity
 
     protected function _setLongUrl($url)
     {
-        $this->setTitle($url);
+        $this->setTitleFromUrl($url);
         return $url;
     }
 
@@ -45,6 +45,11 @@ class Url extends Entity
         return Router::url("/$url", [
             '_base' => true,
         ]);
+    }
+
+    public function incrementVisits()
+    {
+        $this->visits += 1;
     }
 
     public function isShortUrlSet()
@@ -57,7 +62,7 @@ class Url extends Entity
         $this->short_url = Base62::encode($this->id);
     }
 
-    public function setTitle($url)
+    protected function setTitleFromUrl($url)
     {
         $this->title = UrlUtility::getTitle($url);
     }

@@ -9,6 +9,7 @@ class UrlsController extends AppController
     {
         $id = $this->getUrlId($shortUrl);
         $url = $this->Urls->get($id);
+	$this->incrementVisits($url);
         $this->redirect($url->long_url, 302);
     }
 
@@ -16,4 +17,12 @@ class UrlsController extends AppController
     {
         return Base62::decode($shortUrl);
     }
+
+    protected function incrementVisits($url)
+    {
+        $url->incrementVisits();
+	$this->log($url, 'debug');
+        $this->Urls->save($url);
+    }
+
 }
