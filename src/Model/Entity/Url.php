@@ -5,9 +5,7 @@ use Cake\ORM\Entity;
 use Cake\Routing\Router;
 
 use App\Utility\Base62;
-
-use DOMDocument;
-use DOMXPath;
+use App\Utility\Url as UrlUtility;
 
 /**
  * Url Entity
@@ -38,7 +36,7 @@ class Url extends Entity
 
     protected function _setLongUrl($url)
     {
-        $this->title = $url;
+        $this->setTitle($url);
         return $url;
     }
 
@@ -49,14 +47,6 @@ class Url extends Entity
         ]);
     }
 
-    protected function _setTitle($url)
-    {
-        $doc = new DOMDocument();
-        @$doc->loadHTMLFile($url);
-        $xpath = new DOMXPath($doc);
-        return $xpath->query('//title')->item(0)->nodeValue;
-    }
-
     public function isShortUrlSet()
     {
         return !is_null($this->short_url);
@@ -64,6 +54,11 @@ class Url extends Entity
 
     public function setShortUrl()
     {
-        $this->short_url = Base62::base62Encode($this->id);
+        $this->short_url = Base62::encode($this->id);
+    }
+
+    public function setTitle($url)
+    {
+        $this->title = UrlUtility::getTitle($url);
     }
 }

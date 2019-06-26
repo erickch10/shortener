@@ -1,9 +1,9 @@
 <?php
 namespace App\Controller\Api;
 
-use Cake\Controller\Controller;
-
 use Crud\Controller\ControllerTrait;
+
+use App\Controller\AppController as Controller;
 
 class AppController extends Controller
 {
@@ -12,7 +12,6 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('RequestHandler');
         $this->loadComponent('Crud.Crud', [
           'actions' => [
             'Crud.Add',

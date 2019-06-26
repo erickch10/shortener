@@ -7,7 +7,7 @@ class Base62
 {
     const CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public static function base62Decode($base62)
+    public static function decode($base62)
     {
         $chars = array_reverse(str_split($base62));
 
@@ -21,7 +21,7 @@ class Base62
         );
     }
 
-    public static function base62Encode($base10)
+    public static function encode($base10)
     {
         return implode(
           array_map([self::class, 'extractChar'],

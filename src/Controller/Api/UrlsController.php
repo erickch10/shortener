@@ -17,7 +17,7 @@ class UrlsController extends AppController
           'modified',
         ]);
 
-        if ($url = $this->getUrlIfExists()) {
+        if ($url = $this->getUrlFromDB()) {
             return $this->Crud->execute('view', ['id' => $url->id]);
         } else {
             return $this->Crud->execute();
@@ -32,7 +32,7 @@ class UrlsController extends AppController
         );
     }
 
-    protected function getUrlIfExists()
+    protected function getUrlFromDB()
     {
         if ($longUrl = $this->request->getData('long_url')) {
             return $this->Urls->findByLongUrl($longUrl)
