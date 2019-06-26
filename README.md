@@ -1,6 +1,6 @@
 # URL Shortener Challenge
 
-This is a URL shortening API built using **CakePHP** framework alongside the **frindsofcake/crud** library which is a library that sets up crud CakePHP actions with the possibility of generating a REST API.
+This is a URL shortening API built using **CakePHP** framework alongside the [Friends of cake CRUD](https://github.com/FriendsOfCake/crud) library which is a library that sets up crud CakePHP actions with the possibility of generating a REST API.
 
 ## How to install
 
