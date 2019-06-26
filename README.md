@@ -50,3 +50,4 @@ Additionally the base 62 encoding and the fetching of the URL's title were imple
 
 - Personalize the response in case an invalid short URL is provided.
 - Validate the input of the base 62 encoding/decoding functions.
+- Extract some of the logic put into the Controllers to a more appropriate place.
