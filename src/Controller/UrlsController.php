@@ -21,7 +21,6 @@ class UrlsController extends AppController
     protected function incrementVisits($url)
     {
         $url->incrementVisits();
-	$this->log($url, 'debug');
         $this->Urls->save($url);
     }
 
