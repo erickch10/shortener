@@ -52,14 +52,14 @@ Generates a short URL from a long one, also lists the most visited ones.
           "code": 422,
           "url": "/api/urls",
           "message": "A validation error occurred",
-          "errorCount": number of errors,
-          "errors": Object with the generated errors,
+          "errorCount": "Number of errors",
+          "errors": "Object with the generated errors",
           "exception": {
               "class": "Crud\\Error\\Exception\\ValidationException",
               "code": 422,
               "message": "A validation error occurred"
           },
-          "trace": Object with the error trace data
+          "trace": "Object with the error trace data"
       }
    }
    ```
