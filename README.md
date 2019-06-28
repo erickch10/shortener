@@ -10,7 +10,11 @@ After cloning the repository install dependencies from the root folder by runnin
 composer install
 ```
 
-Then run the database migrations
+Copy the **app.default.php** file to **app.php**, this is the main configuration file for the framework.
+
+Now set up the database. Create the environment file by copying the **.env.default** file to **.env** then edit the necessary values to connect to the database. There's a default configuration in case you wanna use it.
+
+When the database is set up run the database migrations
 
 ```
 bin/cake migrations migrate
@@ -46,8 +50,11 @@ The process was made using the second option since it requires less database que
 
 Additionally the base 62 encoding and the fetching of the URL's title were implemented in utility classes separated from the controllers and models to ensure the separation of concerns.
 
+## REST API Usage
+
+Here you can find the available endpoints in the API and their usage [API Docs](APIDOCS.md)
+
 ## Future improvements
 
 - Personalize the response in case an invalid short URL is provided.
 - Validate the input of the base 62 encoding/decoding functions.
-- Extract some of the logic put into the Controllers to a more appropriate place.
