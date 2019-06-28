@@ -26,7 +26,9 @@ Generates a short URL from a long one, also lists the most visited ones.
 * **Success Response:**
 
   * **Code:** 201 if the record didn't exist, 200 if it did <br />
-    **Content:** `{
+    **Content:**
+    ```javascript
+    {
       "success": true,
       "data": {
         "id": 187,
@@ -36,12 +38,15 @@ Generates a short URL from a long one, also lists the most visited ones.
         "created": "2019-06-28T23:10:07+00:00",
         "modified": "2019-06-28T23:10:07+00:00"
       }
-    }`
+    }
+    ```
 
 * **Error Response:**
 
  * **Code:** 422 UNPROCESSABLE ENTITY <br />
-   **Content:** `{
+   **Content:**
+   ```javascript
+   {
       "success": false,
       "data": {
           "code": 422,
@@ -56,7 +61,9 @@ Generates a short URL from a long one, also lists the most visited ones.
           },
           "trace": Object with the error trace data
       }
-   }`
+   }
+   ```
+
 * **Sample Call:**
 
   ```javascript
@@ -99,7 +106,9 @@ Generates a short URL from a long one, also lists the most visited ones.
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{
+    **Content:**
+    ```javascript
+    {
       "success": true,
       "data": [
           {
@@ -130,7 +139,8 @@ Generates a short URL from a long one, also lists the most visited ones.
               "modified": "2019-06-28T15:14:49+00:00"
           }
       ]
-  }`
+    }
+    ```
 
 * **Sample Call:**
 
