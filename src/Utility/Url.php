@@ -19,6 +19,7 @@ class Url
         $doc = new DOMDocument();
         @$doc->loadHTMLFile($url);
         $xpath = new DOMXPath($doc);
-        return $xpath->query('//title')->item(0)->nodeValue;
+        $title = $xpath->query('//title')->item(0);
+        return $title ? $title->nodeValue : '';
     }
 }
