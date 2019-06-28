@@ -3,8 +3,19 @@ namespace App\Model\Validation;
 
 use Cake\Validation\Validator;
 
-class Url extends Validator {
-
+/**
+ * Url validations provider
+ *
+ */
+class Url extends Validator
+{
+    /**
+     * Checks if a given URl returns a valid response.
+     *
+     * @param string $url URL to be checked.
+     * @param array $context Validation context.
+     * @return bool
+     */
     public static function urlExists($url, array $context) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

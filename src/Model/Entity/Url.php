@@ -22,10 +22,6 @@ class Url extends Entity
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
-     * Note that when '*' is set to true, this allows all unspecified fields to
-     * be mass assigned. For security purposes, it is advised to set '*' to false
-     * (or remove it), and explicitly make individual fields accessible as needed.
-     *
      * @var array
      */
     protected $_accessible = [
@@ -34,12 +30,24 @@ class Url extends Entity
         'modified' => true
     ];
 
+    /**
+     * Mutator for the long_url field. Calls the setTitleFromUrl method.
+     *
+     * @param string $url The long URL.
+     * @return string
+     */
     protected function _setLongUrl($url)
     {
         $this->setTitleFromUrl($url);
         return $url;
     }
 
+    /**
+     * Mutator for the short_url field. Sets the URL with the full path.
+     *
+     * @param string $url The short URL.
+     * @return string
+     */
     protected function _setShortUrl($url)
     {
         return Router::url("/$url", [
@@ -47,23 +55,56 @@ class Url extends Entity
         ]);
     }
 
-    public function incrementVisits()
+    /**
+     * Sets the entity's title given a URL using the UrlUtility's getTitle method.
+     *
+     * @param string $url The URL to get the title from.
+     * @return void
+     */
+    protected function setTitleFromUrl($url)
     {
-        $this->visits += 1;
+        $this->title = UrlUtility::getTitle($url);
     }
 
+    /**
+     * Increments the entity's visits by a given number.
+     *
+     * @param int $step The number to increment the vists by.
+     * @return void
+     */
+    public function incrementVisits($step = 1)
+    {
+        $this->visits += $step;
+    }
+
+    /**
+     * Checks if the short URL has been set.
+     *
+     * @return bool
+     */
     public function isShortUrlSet()
     {
         return !is_null($this->short_url);
     }
 
+    /**
+     * Sets the entity's short URL using the Base62's encode method.
+     *
+     * @return void
+     */
     public function setShortUrl()
     {
         $this->short_url = Base62::encode($this->id);
     }
 
-    protected function setTitleFromUrl($url)
+    /**
+     * Gets the a URL's id given a short URL using the Base62's decode method.
+     *
+     * @param string $url The short URL to be parsed.
+     * @return int
+     */
+    public static function getUrlIdFromShortUrl($shortUrl)
     {
-        $this->title = UrlUtility::getTitle($url);
+        return Base62::decode($shortUrl);
     }
 }

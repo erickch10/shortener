@@ -7,6 +7,10 @@ use Crud\Traits\SerializeTrait;
 use Crud\Traits\ViewTrait;
 use Crud\Traits\ViewVarTrait;
 
+/**
+ * Top visited action
+ *
+ */
 class TopVisited extends BaseAction
 {
     use FindMethodTrait;
@@ -15,7 +19,7 @@ class TopVisited extends BaseAction
     use ViewVarTrait;
 
     /**
-     * Default settings
+     * Top visited action settings
      *
      * @var array
      */
@@ -25,10 +29,10 @@ class TopVisited extends BaseAction
     ];
 
     /**
-    * Generic handler for all HTTP verbs
-    *
-    * @return void
-    */
+     * Handler for the top visited action.
+     *
+     * @return void
+     */
     protected function _handle()
     {
         $query = $this->buildQuery();
@@ -39,6 +43,12 @@ class TopVisited extends BaseAction
         $this->_trigger('beforeRender', $subject);
     }
 
+    /**
+     * Build query object to retrieve the URLs from the most visited to the least visited.
+     *     The records can be modifed through the query string, Default value is 100.
+     *
+     * @return \Cake\ORM\Query The query builder
+     */
     protected function buildQuery()
     {
         list($finder, $options) = $this->_extractFinder();

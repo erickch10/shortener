@@ -3,11 +3,17 @@ namespace App\Utility;
 
 use DOMDocument;
 use DOMXPath;
+
 /**
- * Class to create manage URLs
+ * Class to operate URLs
  */
 class Url
 {
+    /**
+     * Gets the title from a given URL.
+     * @param string $url The url to get the title from.
+     * @return string
+     */
     public static function getTitle($url)
     {
         $doc = new DOMDocument();

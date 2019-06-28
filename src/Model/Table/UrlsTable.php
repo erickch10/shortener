@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 
 use ArrayObject;
 
+use App\Model\Entity\Url;
+
 /**
  * Urls Model
  *
@@ -100,17 +102,40 @@ class UrlsTable extends Table
     }
 
     /**
-     * Sets the short url.
+     * Calls the setShortUrl method.
      *
      * @param \Cake\Event\Event $event The fired event.
-     * @param \Cake\Datasource\EntityInterface $entity The created entity.
+     * @param \Cake\Datasource\EntityInterface $url The created URL.
      * @param \ArrayObject $options Saving options.
      */
-    public function afterSave(Event $event, EntityInterface $entity, ArrayObject $options)
+    public function afterSave(Event $event, EntityInterface $url, ArrayObject $options)
     {
-        if (!$entity->isShortUrlSet()) {
-          $entity->setShortUrl();
-          $this->save($entity);
+        $this->setShortUrl($url);
+    }
+
+    /**
+     * Increments the vists of a given url entity and saves the changes.
+     *
+     * @param \App\Model\Entity\Url $url The URL to be modified.
+     * @return void
+     */
+    public function incrementVisits(Url $url)
+    {
+        $url->incrementVisits();
+        $this->save($url);
+    }
+
+    /**
+     * Sets the short url if the record was just created.
+     *
+     * @param \App\Model\Entity\Url $url The created URL.
+     * @return void
+     */
+    protected function setShortUrl(Url $url)
+    {
+        if (!$url->isShortUrlSet()) {
+            $url->setShortUrl();
+            $this->save($url);
         }
     }
 }
